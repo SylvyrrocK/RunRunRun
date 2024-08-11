@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
 {
+    public float levelSpeed = -2;
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0, 0, -2) * Time.deltaTime;
+        transform.position += new Vector3(0, 0, levelSpeed) * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
