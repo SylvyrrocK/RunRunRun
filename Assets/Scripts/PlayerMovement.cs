@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
         
         //Ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.05f, isGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, isGround);
 
         //Drag handler
         if (grounded)
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoverPlayer()
     {
-        moveDirection = orientation.forward * verticalInput+ orientation.right * horizontalInput;
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if(grounded)
         {
@@ -91,21 +91,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * playerSpeed * 10f * airMultiplayer, ForceMode.Force);
         }
-
-        //if(Input.GetKey(KeyCode.D))
-        //{
-        //    rb.velocity = transform.right * playerSpeed * 5f * Time.deltaTime;
-        //}
-
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    rb.velocity = -transform.right * playerSpeed * 5f * Time.deltaTime;
-        //}
-
-        //if(Input.GetKey(KeyCode.Space))
-        //{
-        //    rb.velocity = transform.up * jumpHeight * 10f * Time.deltaTime;
-        //}
     }
 
     private void SpeedControl()

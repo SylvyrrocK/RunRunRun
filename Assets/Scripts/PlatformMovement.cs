@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
 {
-    public float levelSpeed = -2;
+    public float levelSpeed = -2f;
     // Update is called once per frame
     void Update()
     {

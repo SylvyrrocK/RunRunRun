@@ -6,12 +6,15 @@ public class CoinDetection : MonoBehaviour
 {
     public PlayerStats playerStats;
 
+    private int collidedCoinValue;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Money"))
         {
+            collidedCoinValue = other.gameObject.GetComponent<CoinSpin>().coinValue;
+            playerStats.coinBalance += collidedCoinValue;
             Destroy(other.gameObject);
-            playerStats.coinBalance += 1f;
             Debug.Log(playerStats.coinBalance);
         }
     }
