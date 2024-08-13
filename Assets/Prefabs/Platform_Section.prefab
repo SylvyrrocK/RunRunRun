@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac5cb0737345a24f9c20d24f7e2f3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSpeed: 0
+  levelSpeed: -5
 --- !u!54 &8451820218234598841
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8881382743283894411}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c105f9e61b9dc99438cf9b7a97f1dd08, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

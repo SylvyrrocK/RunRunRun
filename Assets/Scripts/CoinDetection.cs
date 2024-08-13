@@ -13,7 +13,16 @@ public class CoinDetection : MonoBehaviour
         if (other.gameObject.CompareTag("Money"))
         {
             collidedCoinValue = other.gameObject.GetComponent<CoinSpin>().coinValue;
-            playerStats.coinBalance += collidedCoinValue;
+
+            if (playerStats.coinBalance + collidedCoinValue >= 0)
+            {
+                playerStats.coinBalance += collidedCoinValue;
+            }
+            else
+            {
+                playerStats.coinBalance = 0;
+            }
+
             Destroy(other.gameObject);
             Debug.Log(playerStats.coinBalance);
         }

@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode runKey = KeyCode.W;
 
     [Header("Ground Check")]
     public float playerHeight = 1f;
@@ -33,8 +35,15 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
+    //public float worldSpeed = -2f;
+
+    //public float coinSpin;
+    //public float platformMovement;
+
     private void Start()
     {
+        //coinSpin = GetComponent<CoinSpin>().coinSpeed;
+        //platformMovement = GetComponent<PlatformMovement>().levelSpeed;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         isReadyToJump = true;
@@ -69,7 +78,24 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKey(jumpKey) && isReadyToJump && grounded)
+        if (Input.GetKeyDown(runKey))
+        {
+            Time.timeScale = 2f;
+        }
+
+        if (Input.GetKeyUp(runKey))
+        {
+            Time.timeScale = 1f;
+        }
+
+        //Possible sprint chunk ?
+        //if(Input.GetKey(runKey) && isReadyToJump && grounded)
+        //{
+        //    platformMovement += 0.2f;
+        //    coinSpin += 0.2f;
+        //}
+
+        if (Input.GetKey(jumpKey) && isReadyToJump && grounded)
         {
             isReadyToJump = false;
 
