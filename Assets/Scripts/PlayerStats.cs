@@ -11,6 +11,6 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        coinText.text = "Balance: " + coinBalance.ToString();
+        coinText.text = "" + coinBalance.ToString();
     }
 }
