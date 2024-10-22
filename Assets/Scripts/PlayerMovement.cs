@@ -9,7 +9,6 @@ using UnityEngine.Experimental.AI;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    // Update is called once per frame
     public float playerSpeed = 7f;
 
     public float jumpHeight = 4f;
@@ -35,15 +34,10 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
-    //public float worldSpeed = -2f;
-
-    //public float coinSpin;
-    //public float platformMovement;
+    public float coinSpin;
 
     private void Start()
     {
-        //coinSpin = GetComponent<CoinSpin>().coinSpeed;
-        //platformMovement = GetComponent<PlatformMovement>().levelSpeed;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         isReadyToJump = true;
@@ -70,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoverPlayer();
+        MovePlayer();
     }
 
     private void MyInput()
@@ -80,20 +74,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(runKey))
         {
-            Time.timeScale = 2f;
+            PlatformMovement.PlatformSpeed();
+            CoinSpin.CoinSpeed();
         }
 
         if (Input.GetKeyUp(runKey))
         {
-            Time.timeScale = 1f;
+            PlatformMovement.levelSpeed = -2f;
+            CoinSpin.coinSpeed = -2f;
         }
-
-        //Possible sprint chunk ?
-        //if(Input.GetKey(runKey) && isReadyToJump && grounded)
-        //{
-        //    platformMovement += 0.2f;
-        //    coinSpin += 0.2f;
-        //}
 
         if (Input.GetKey(jumpKey) && isReadyToJump && grounded)
         {
@@ -105,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MoverPlayer()
+    private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 

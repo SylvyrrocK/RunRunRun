@@ -7,7 +7,7 @@ using UnityEngine;
 public class CoinSpin : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 100f;
-    [SerializeField] public float coinSpeed = -2f;
+    [SerializeField] public static float coinSpeed = -2f;
     [SerializeField] private float levitationSpeed = 1f;
 
     private string coinName;
@@ -46,6 +46,11 @@ public class CoinSpin : MonoBehaviour
 
         //Movement
         transform.position += new Vector3(0, 0, coinSpeed) * Time.deltaTime;
+    }
+
+    public static void CoinSpeed()
+    {
+        CoinSpin.coinSpeed = -6f;
     }
 
     private void OnTriggerEnter(Collider other)
