@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
 {
-    [SerializeField] public static float levelSpeed = -2f;
+    [SerializeField] public static float levelSpeed = -5f;
 
     // Update is called once per frame
     void Update()
@@ -14,8 +14,8 @@ public class PlatformMovement : MonoBehaviour
 
     public static void PlatformSpeed()
     {
-        PlatformMovement.levelSpeed = -6f;
-        Debug.Log(PlatformMovement.levelSpeed);
+        PlatformMovement.levelSpeed = -8f;
+        Debug.Log("Current level Speed: " + PlatformMovement.levelSpeed);
     }
 
     private void OnTriggerEnter(Collider other)

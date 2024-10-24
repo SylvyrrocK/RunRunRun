@@ -80,8 +80,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyUp(runKey))
         {
-            PlatformMovement.levelSpeed = -2f;
-            CoinSpin.coinSpeed = -2f;
+            PlatformMovement.levelSpeed = -5f;
+            CoinSpin.coinSpeed = -5f;
         }
 
         if (Input.GetKey(jumpKey) && isReadyToJump && grounded)

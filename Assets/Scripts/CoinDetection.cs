@@ -24,7 +24,7 @@ public class CoinDetection : MonoBehaviour
             }
 
             Destroy(other.gameObject);
-            Debug.Log(playerStats.coinBalance);
+            Debug.Log("Current balance: " + playerStats.coinBalance);
         }
     }
 }
