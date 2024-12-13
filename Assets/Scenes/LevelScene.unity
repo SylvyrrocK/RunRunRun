@@ -2129,7 +2129,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2182,7 +2182,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2235,7 +2235,7 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2514,7 +2514,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 15, y: 3, z: 5}
+    m_Scale: {x: 30, y: 3, z: 5}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -6987,18 +6987,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  jumpHeight: 4
-  jumpCooldown: 0.75
-  airMultiplayer: 1
   groundDrag: 9
+  airMultiplayer: 0.4
+  jumpHeight: 4
+  jumpCooldown: 0.7
+  dashCooldown: 1
+  dashForce: 100
   jumpKey: 32
   runKey: 119
+  dashKey: 304
   playerHeight: 1
   isGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
   orientation: {fileID: 2041705577}
-  coinSpin: 0
 --- !u!114 &2041705582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7101,6 +7103,10 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 2041705573}
+    - target: {fileID: 8451820218234598841, guid: 6e8b668547b909641aefdec5f5f79376, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

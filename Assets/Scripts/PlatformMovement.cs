@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
 {
-    [SerializeField] public static float levelSpeed = -5f;
+    public static float levelSpeed = -5f;
+
+    //Rigidbody rb;
 
     // Update is called once per frame
     void Update()
     {
+        //rb.AddForce(new Vector3(0, 0 , levelSpeed) * 10f, ForceMode.Force);
         transform.position += new Vector3(0, 0, levelSpeed) * Time.deltaTime;
     }
 

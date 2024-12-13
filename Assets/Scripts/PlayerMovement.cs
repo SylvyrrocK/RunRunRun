@@ -10,22 +10,28 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float playerSpeed = 7f;
+    public float groundDrag = 5f;
+    public float airMultiplayer = 0.4f;
 
+    [Header("Jumping")]
     public float jumpHeight = 4f;
     public float jumpCooldown = 0.25f;
-    public float airMultiplayer = 0.4f;
     bool isReadyToJump = true;
 
-    public float groundDrag = 5f;
+    [Header("Dashing")]
+    bool isReadyToDash = true;
+    public float dashCooldown = 1f;
+    public float dashForce = 100f;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode runKey = KeyCode.W;
+    public KeyCode dashKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public float playerHeight = 1f;
     public LayerMask isGround;
-    bool grounded;
+    bool isGrounded;
 
     public Transform orientation;
     Vector3 moveDirection;
@@ -33,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
     float horizontalInput;
     float verticalInput;
-
-    public float coinSpin;
 
     private void Start()
     {
@@ -47,12 +51,12 @@ public class PlayerMovement : MonoBehaviour
     {
         MyInput();
         SpeedControl();
-        
+
         //Ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, isGround);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, isGround);
 
         //Drag handler
-        if (grounded)
+        if (isGrounded)
         {
             rb.drag = groundDrag;
         }
@@ -84,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
             CoinSpin.coinSpeed = -5f;
         }
 
-        if (Input.GetKey(jumpKey) && isReadyToJump && grounded)
+        if (Input.GetKey(jumpKey) && isReadyToJump && isGrounded)
         {
             isReadyToJump = false;
 
@@ -92,17 +96,26 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+        if (Input.GetKey(dashKey) && isReadyToDash && isGrounded)
+        {
+            isReadyToDash = false;
+
+            rb.AddForce(moveDirection.normalized * dashForce * 10f, ForceMode.Force);
+
+            Invoke(nameof(ResetDash), dashCooldown);
+        }
     }
 
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if(grounded)
+        if(isGrounded)
         {
             rb.AddForce(moveDirection.normalized * playerSpeed * 10f, ForceMode.Force);
         }
-        else if (!grounded)
+        else if (!isGrounded)
         {
             rb.AddForce(moveDirection.normalized * playerSpeed * 10f * airMultiplayer, ForceMode.Force);
         }
@@ -131,5 +144,10 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         isReadyToJump = true;
+    }
+
+    private void ResetDash()
+    {
+        isReadyToDash = true;
     }
 }
